@@ -28,10 +28,10 @@ export default function BasicExample() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/write">write</Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/list">list</Link>
           </li>
         </ul>
 
@@ -39,9 +39,9 @@ export default function BasicExample() {
         <Routes>
           <Route path="/" element={<Home/>}>
           </Route>
-          <Route path="/about" element={<List/>}>
+          <Route path="/list" element={<List/>}>
           </Route>
-          <Route path="/dashboard" element={<Write/>}>
+          <Route path="/write" element={<Write/>}>
           </Route>
         </Routes>
       </div>
