@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import db from './../firebaseInit';
 /*
     add a board (post)
 */
+async function init(boards){
+    const querySnapshot = await getDocs(collection(db, "templates"));
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().title}`);
+        boards.concat({brdno:1, braddate:new DataTransfer(), brdwriter: doc.data().name, brdtitle: doc.data().title})
+    });
+    return boards;
+}
+
+
 class Write extends Component {
+
+    // constructor(){
+    //     const querySnapshot = getDocs(collection(db, "templates"));
+    //     console.log(querySnapshot);
+    // }
     
     state = {
-        maxNo: 3,
+        maxNo: 10,
         boards: [
             {
                 brdno: 1,
@@ -21,23 +38,37 @@ class Write extends Component {
             }
         ]
     }
-    
+
     handleSaveData = (data) => {
         this.setState({
             boards: this.state.boards.concat({ brdno: this.state.maxNo++, brddate: new Date(), ...data })
         });
     }
+
+    async init(){
+        const querySnapshot = await getDocs(collection(db, "templates"));
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data().title}`);
+            this.setState({
+                boards: this.state.boards.concat({brdno:doc.id, braddate:new Date(), brdwriter: doc.data().name, brdtitle: doc.data().title})
+            })
+        });
+    }
+
+    constructor(){
+        super();
+        this.init();
+    }
   
     render() {
         const { boards } = this.state;
-
         return (
             <div>
                 <BoardForm onSaveData={this.handleSaveData}/>
                 <table border="1">
                     <tbody>
                     <tr align="center">
-                        <td width="50">No.</td>
+                        <td width="50">No</td>
                         <td width="300">Title</td>
                         <td width="100">Name</td>
                         <td width="100">Date</td>
@@ -55,13 +86,14 @@ class Write extends Component {
 }
 
 class BoardItem extends React.Component {
+    
     render() {
         return(
             <tr>
                 <td>{this.props.row.brdno}</td>
                 <td>{this.props.row.brdtitle}</td>
                 <td>{this.props.row.brdwriter}</td>
-                <td>{this.props.row.brddate.toLocaleDateString('ko-KR')}</td>
+                <td>{this.props.row.brdno}</td>
             </tr>
         );
     }
@@ -77,11 +109,22 @@ class BoardForm extends Component {
     }
     
     handleSubmit = (e) => {
+        console.log(this.state.brdtitle);
         e.preventDefault();
         this.props.onSaveData(this.state);
         this.setState({});
+        try {
+            const docRef = addDoc(collection(db, "templates"), {
+                title:this.state.brdtitle,
+                name:this.state.brdwriter,
+                createdAt:Date.now(),
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (error) {
+            console.error("Error adding document: ", e);
+        }
     }
-    
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>

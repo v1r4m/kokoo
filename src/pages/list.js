@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import db from './../firebaseInit';
 
 /*
     formed list with Table tag and component
