@@ -5,6 +5,8 @@ import {
     Link
   } from "react-router-dom";
 
+// import OpenCVfunction from './component/opencvSample'
+
 export default function Home() {
     return (
       <div>

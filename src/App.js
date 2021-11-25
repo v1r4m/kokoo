@@ -9,35 +9,43 @@ import {
 import Home from "./pages/home"
 import List from "./pages/list"
 import Write from "./pages/write"
+import NewT from "./pages/new"
 
 
 export default function BasicExample() {
   return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/write">write</Link>
-          </li>
-          <li>
-            <Link to="/list">list</Link>
-          </li>
-        </ul>
+    <div>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/write">write</Link>
+            </li>
+            <li>
+              <Link to="/list">list</Link>
+            </li>
+            <li>
+              <Link to="/new">new</Link>
+            </li>
+          </ul>
 
-        <hr />
-        <Routes>
-          <Route path="/" element={<Home/>}>
-          </Route>
-          <Route path="/list" element={<List/>}>
-          </Route>
-          <Route path="/write" element={<Write/>}>
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+          <hr />
+          <Routes>
+            <Route path="/" element={<Home/>}>
+            </Route>
+            <Route path="/list" element={<List/>}>
+            </Route>
+            <Route path="/write" element={<Write/>}>
+            </Route>
+            <Route path="/new" element={<NewT/>}>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </div>
   );
 }
 
