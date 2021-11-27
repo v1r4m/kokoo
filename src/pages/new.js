@@ -18,20 +18,20 @@ import React, { Component } from 'react';
 //         );
 //     }
 // }
+import { doc, updateDoc, addDoc, setDoc, arrayUnion } from "firebase/firestore";
+import db from './../firebaseInit';
+var rand = require('random-key')
+
+
 class NewT extends Component {
     state = {
-        maxNo: 10,
+        maxNo: 1,
         boards: [
             {
-                brdno: 1,
-                brdwriter: 'Lee SunSin',
-                brdtitle: 'If you intend to live then you die',
-                brddate: new Date()
-            },
-            {
-                brdno: 2,
-                brdwriter: 'So SiNo',
-                brdtitle: 'Founder for two countries',
+                brdno: "sample",
+                brdquestion: 'Please input the sample question',
+                brdx: 'x coordinate here',
+                brdy: 'y coordinate here',
                 brddate: new Date()
             }
         ]
@@ -62,10 +62,10 @@ class NewT extends Component {
                 <table border="1">
                     <tbody>
                     <tr align="center">
-                        <td width="50">No</td>
-                        <td width="300">Title</td>
-                        <td width="100">Name</td>
-                        <td width="100">Date</td>
+                        <td width="300">Question</td>
+                        <td width="200">X</td>
+                        <td width="200">Y</td>
+                        <td width="100">Number</td>
                     </tr>
                     {
                         boards.map(function(row){ 
@@ -84,9 +84,9 @@ class SubmitItem extends React.Component {
     render() {
         return(
             <tr>
-                <td>{this.props.row.brdno}</td>
-                <td>{this.props.row.brdtitle}</td>
-                <td>{this.props.row.brdwriter}</td>
+                <td>{this.props.row.brdquestion}</td>
+                <td>{this.props.row.brdx}</td>
+                <td>{this.props.row.brdy}</td>
                 <td>{this.props.row.brdno}</td>
             </tr>
         );
@@ -94,6 +94,22 @@ class SubmitItem extends React.Component {
 }
 class SubmitForm extends Component {
     state = {}
+    randkey = ""
+    dbkey = ""
+
+    constructor(){
+        super();
+        this.randkey=rand.generate();
+        this.dbkey = setDoc(doc(db, "templates", this.randkey),{
+            title:"sample title",
+            xy:{
+                question:"samplequestion",
+                x:0,
+                y:0
+            }
+        });
+        console.log(this.dbkey);
+    }
     
     handleChange = (e) => {
         this.setState({
@@ -104,14 +120,31 @@ class SubmitForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.onSaveData(this.state);
+        try {
+            updateDoc(doc(db, "templates", this.randkey), {
+                // "xy.question": this.state.brdquestion,
+                // "xy.x":this.state.brdx,
+                // "xy.y":this.state.brdy
+
+                xy:arrayUnion({
+                    question:this.state.brdquestion,
+                    x:this.state.brdx,
+                    y:this.state.brdy
+                })
+            });
+            console.log("Document written with ID: ", this.randkey);
+        } catch (error) {
+            console.error("Error adding document: ", e);
+        }
         this.setState({});
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input placeholder="title" name="brdtitle" onChange={this.handleChange}/>
-                <input placeholder="name" name="brdwriter" onChange={this.handleChange}/>
+                <input placeholder="question" name="brdquestion" onChange={this.handleChange}/>
+                <input placeholder="x" name="brdx" onChange={this.handleChange}/>
+                <input placeholder="y" name="brdy" onChange={this.handleChange}/>
                 <button type="submit">more</button>
             </form>
         );
