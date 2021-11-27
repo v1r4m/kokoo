@@ -96,6 +96,7 @@ class SubmitForm extends Component {
     state = {}
     randkey = ""
     dbkey = ""
+    num=0
 
     constructor(){
         super();
@@ -120,6 +121,7 @@ class SubmitForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.onSaveData(this.state);
+        this.num++;
         try {
             updateDoc(doc(db, "templates", this.randkey), {
                 // "xy.question": this.state.brdquestion,
@@ -130,7 +132,8 @@ class SubmitForm extends Component {
                     question:this.state.brdquestion,
                     x:this.state.brdx,
                     y:this.state.brdy
-                })
+                }),
+                num:this.num
             });
             console.log("Document written with ID: ", this.randkey);
         } catch (error) {

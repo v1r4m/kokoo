@@ -10,6 +10,7 @@ import Home from "./pages/home"
 import List from "./pages/list"
 import Write from "./pages/write"
 import NewT from "./pages/new"
+import MakeT from "./pages/make"
 
 
 export default function BasicExample() {
@@ -30,6 +31,9 @@ export default function BasicExample() {
             <li>
               <Link to="/new">new</Link>
             </li>
+            <li>
+              <Link to="/make">make</Link>
+            </li>
           </ul>
 
           <hr />
@@ -41,6 +45,8 @@ export default function BasicExample() {
             <Route path="/write" element={<Write/>}>
             </Route>
             <Route path="/new" element={<NewT/>}>
+            </Route>
+            <Route path="/make" element={<MakeT/>}>
             </Route>
           </Routes>
         </div>
