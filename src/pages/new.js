@@ -23,6 +23,7 @@ import db from './../firebaseInit';
 var rand = require('random-key')
 
 
+
 class NewT extends Component {
     state = {
         maxNo: 1,
