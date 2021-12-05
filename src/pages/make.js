@@ -44,7 +44,8 @@ class MakeT extends Component{
 
     constructor(props){
         super(props);
-        this.getlist = this.getlist.bind(this);
+        // this.getlist = this.getlist.bind(this);
+        
         this.state = {
             maxNo: 1,
             boards: [
@@ -96,6 +97,7 @@ class MakeT extends Component{
 
             ]
           };
+          this.getlist();
     }
 
     handleChange= (e) => {
@@ -144,6 +146,7 @@ class MakeT extends Component{
         var canvas = this.Canvas(this.img.width, this.img.height, window.devicePixelRatio || 1);
         var ctx = canvas.getContext("2d");
         var json2d = json2d(ctx);
+        this.addjson().then(result=>json2d.render(this.obj));
         json2d.render(this.obj);
        document.body.appendChild(canvas);
     }
@@ -165,7 +168,7 @@ class MakeT extends Component{
         const { boards } = this.state;
         return (
             <div>
-                <button type = "get" onClick={this.getlist}>get list</button>
+                {/* <button type = "get" onClick={this.getlist}>get list</button> */}
                 <form onSubmit={this.handleSubmit}>
                     <table border="1">
                         <tbody>

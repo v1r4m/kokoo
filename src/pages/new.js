@@ -38,16 +38,27 @@ class NewT extends Component {
         ]
     }
 
+    img = new Image()
+
     handleSaveData = (data) => {
         this.setState({
             boards: this.state.boards.concat({ brdno: this.state.maxNo++, brddate: new Date(), ...data })
         });
     }
 
+    async canvas(image){
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(image,0,0);
+        document.body.appendChild(canvas);
+    }
+
     onChange = (e) => {
-        const img = e.target.files[0];
-        const formData = new FormData();
-        formData.append('file', img);
+        this.img = e.target.files[0];
+//        this.canvas(e.target.files[0]);
+        const formData = new FormData()
+        formData.append('file', this.img);
+
     }
   
     render() {
@@ -111,6 +122,14 @@ class SubmitForm extends Component {
             }
         });
         console.log(this.dbkey);
+        updateDoc(doc(db, "templates", "TvnrFM3qRC11vdxB"), {
+            // "xy.question": this.state.brdquestion,
+            // "xy.x":this.state.brdx,
+            // "xy.y":this.state.brdy
+
+            xy:[],
+            num:this.num
+        });
     }
     
     handleChange = (e) => {
@@ -124,7 +143,7 @@ class SubmitForm extends Component {
         this.props.onSaveData(this.state);
         this.num++;
         try {
-            updateDoc(doc(db, "templates", this.randkey), {
+            updateDoc(doc(db, "templates", "TvnrFM3qRC11vdxB"), {
                 // "xy.question": this.state.brdquestion,
                 // "xy.x":this.state.brdx,
                 // "xy.y":this.state.brdy
