@@ -98,6 +98,9 @@ class MakeT extends Component{
             ]
           };
           this.getlist();
+          const docRef = updateDoc(db(db, "templates", "TvnrFM3qRC11vdxB"), {
+            answer:[]
+        });
     }
 
     handleChange= (e) => {
