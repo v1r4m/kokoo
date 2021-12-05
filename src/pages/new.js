@@ -128,6 +128,7 @@ class SubmitForm extends Component {
             // "xy.y":this.state.brdy
 
             xy:[],
+            answer:[],
             num:this.num
         });
     }
