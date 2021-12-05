@@ -186,7 +186,7 @@ class MakeT extends Component{
                         </tbody>
                     </table>
                     <button type="submit">Save</button>
-                    <button onClick={this.blbl}>wtf</button>
+                    {/* <button onClick={this.blbl}>wtf</button> */}
                 </form>
             </div>
         );
@@ -195,7 +195,8 @@ class MakeT extends Component{
 
 class MakeItem extends React.Component{
 
-    state = {}
+    state = {
+    }
     num=0
     arr=["fillText"]
 
@@ -207,14 +208,14 @@ class MakeItem extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.porps);
+        console.log(this.state);
 //        this.props.onSaveData(this.state);
 
         try {
-            const docRef = updateDoc(db(db, "templates", "TvnrFM3qRC11vdxB"), {
+            const docRef = updateDoc(doc(db, "templates", "TvnrFM3qRC11vdxB"), {
                 answer:arrayUnion({
                     sector:this.state.answer
-                }),
+                })
             });
             console.log("Document written with ID: ", docRef.id);
         } catch (error) {
