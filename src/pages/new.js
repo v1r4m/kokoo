@@ -21,6 +21,9 @@ import React, { Component } from 'react';
 import { doc, updateDoc, addDoc, setDoc, arrayUnion } from "firebase/firestore";
 import db from './../firebaseInit';
 var rand = require('random-key')
+import Table from '@mui/material/Table';
+import Button from '@mui/material/Button'
+import Input from '@mui/material/Input'
 
 
 
@@ -65,13 +68,13 @@ class NewT extends Component {
         const { boards } = this.state;
         return (
             <div>
-                <input type='file' 
+                <Input type='file' 
                     accept='image/jpg,impge/png,image/jpeg,image/gif' 
                     name='img' 
                     onChange={this.onChange}>
-                </input>
+                </Input>
                 <SubmitForm onSaveData={this.handleSaveData}/>
-                <table border="1">
+                <Table border="1">
                     <tbody>
                     <tr align="center">
                         <td width="300">Question</td>
@@ -85,7 +88,7 @@ class NewT extends Component {
                         })
                     }
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }

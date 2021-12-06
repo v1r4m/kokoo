@@ -10,15 +10,20 @@ import {
 export default function Home() {
     return (
       <div>
-        <h2>Home</h2>
-        <ul>
-        <li>
-          <Link to={'/write'}>Write</Link>
-        </li>
-        <li>
-          <Link to={'/list'}>List</Link>
-        </li>
-      </ul>
+        <Grid container spacing={2}
+                        justifyContent="space-evenly"
+                        alignItems="center">
+            <Grid item xs="auto">
+              <Button variant="contained">
+                <Link to="/new">new</Link>
+              </Button>
+            </Grid>
+            <Grid item xs="auto">
+              <Button variant="contained">
+                <Link to="/make">make</Link>
+              </Button>
+            </Grid>
+          </Grid>
       </div>
     );
   }

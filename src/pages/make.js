@@ -3,6 +3,8 @@ import { doc, updateDoc, getDoc, setDoc, arrayUnion } from "firebase/firestore";
 import db from './../firebaseInit';
 import imgA from './sample.png'
 import json2d from 'json2d';
+import Table from '@mui/material/Table';
+import Button from '@mui/material/Button'
 
 // width = 0;
 // height = 0;
@@ -170,7 +172,7 @@ class MakeT extends Component{
             <div>
                 {/* <button type = "get" onClick={this.getlist}>get list</button> */}
                 <form onSubmit={this.handleSubmit}>
-                    <table border="1">
+                    <Table border="1">
                         <tbody>
                         <tr align="center">
                             <td width="50">No</td>
@@ -184,8 +186,8 @@ class MakeT extends Component{
                             })
                         }
                         </tbody>
-                    </table>
-                    <button type="submit">Save</button>
+                    </Table>
+                    <Button type="submit">Save</Button>
                     {/* <button onClick={this.blbl}>wtf</button> */}
                 </form>
             </div>

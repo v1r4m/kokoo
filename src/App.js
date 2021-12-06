@@ -50,8 +50,8 @@ export default function BasicExample() {
           <hr />
           {/* router is in header */}
           <Routes>
-            {/* <Route path="/" element={<Home/>}>
-            </Route> */}
+            <Route path="/" element={<Home/>}>
+            </Route>
             {/* <Route path="/list" element={<List/>}>
             </Route> */}
             <Route path="/new" element={<NewT/>}>
@@ -59,20 +59,6 @@ export default function BasicExample() {
             <Route path="/make" element={<MakeT/>}>
             </Route>
           </Routes>
-          {/* <Grid container spacing={2}
-                          justifyContent="space-evenly"
-                          alignItems="center">
-              <Grid item xs="auto">
-                <Button variant="contained">
-                  <Link to="/new">new</Link>
-                </Button>
-              </Grid>
-              <Grid item xs="auto">
-                <Button variant="contained">
-                  <Link to="/make">make</Link>
-                </Button>
-              </Grid>
-            </Grid> */}
         </div>
       </Router>
     </div>
