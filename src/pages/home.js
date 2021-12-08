@@ -6,7 +6,8 @@ import {
   } from "react-router-dom";
 
 // import OpenCVfunction from './component/opencvSample'
-
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 export default function Home() {
     return (
       <div>

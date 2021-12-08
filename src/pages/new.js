@@ -20,10 +20,13 @@ import React, { Component } from 'react';
 // }
 import { doc, updateDoc, addDoc, setDoc, arrayUnion } from "firebase/firestore";
 import db from './../firebaseInit';
-var rand = require('random-key')
 import Table from '@mui/material/Table';
-import Button from '@mui/material/Button'
-import Input from '@mui/material/Input'
+import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+var rand = require('random-key');
+
 
 
 
@@ -68,27 +71,35 @@ class NewT extends Component {
         const { boards } = this.state;
         return (
             <div>
-                <Input type='file' 
-                    accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                    name='img' 
-                    onChange={this.onChange}>
-                </Input>
-                <SubmitForm onSaveData={this.handleSaveData}/>
-                <Table border="1">
-                    <tbody>
-                    <tr align="center">
-                        <td width="300">Question</td>
-                        <td width="200">X</td>
-                        <td width="200">Y</td>
-                        <td width="100">Number</td>
-                    </tr>
-                    {
-                        boards.map(function(row){ 
-                            return (<SubmitItem key={row.brdno} row={row} />);
-                        })
-                    }
-                    </tbody>
-                </Table>
+                <Grid container alignItems="center"
+                                justifyContent="center"
+                                spacing={2}>
+                    <Grid item xs={10}>
+                        <Input type='file' 
+                            accept='image/jpg,impge/png,image/jpeg,image/gif' 
+                            name='img' 
+                            onChange={this.onChange}>
+                        </Input>
+                    </Grid>
+                    <Grid item xs={12} md={5}>
+                        <Table border="1">
+                            <tbody>
+                            <tr align="center">
+                                <td width="300">Question</td>
+                                <td width="200">X</td>
+                                <td width="200">Y</td>
+                                <td width="100">Number</td>
+                            </tr>
+                            {
+                                boards.map(function(row){ 
+                                    return (<SubmitItem key={row.brdno} row={row} />);
+                                })
+                            }
+                            </tbody>
+                        </Table>
+                        <SubmitForm onSaveData={this.handleSaveData}/>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
@@ -169,10 +180,10 @@ class SubmitForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input placeholder="question" name="brdquestion" onChange={this.handleChange}/>
-                <input placeholder="x" name="brdx" onChange={this.handleChange}/>
-                <input placeholder="y" name="brdy" onChange={this.handleChange}/>
-                <button type="submit">more</button>
+                <Input placeholder="question" name="brdquestion" onChange={this.handleChange}/>
+                <Input placeholder="x" name="brdx" onChange={this.handleChange}/>
+                <Input placeholder="y" name="brdy" onChange={this.handleChange}/>
+                <Button type="submit">more</Button>
             </form>
         );
     }
