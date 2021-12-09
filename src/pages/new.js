@@ -98,7 +98,7 @@ class NewT extends Component {
                             </tbody>
                         </Table>
                         <SubmitForm onSaveData={this.handleSaveData}/>
-                    </Grid>
+                    </Grid>qws0.
                 </Grid>
             </div>
         );

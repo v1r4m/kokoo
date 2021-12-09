@@ -10,11 +10,12 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 //import Item from '@mui/material/Item';
 
-import Home from "./pages/home"
-import List from "./pages/list"
-import Write from "./pages/write"
-import NewT from "./pages/new"
-import MakeT from "./pages/make"
+import Home from "./pages/home";
+import List from "./pages/list";
+import Write from "./pages/write";
+import NewT from "./pages/new";
+import MakeT from "./pages/make";
+import PicT from "./pages/pic";
 
 
 export default function BasicExample() {
@@ -57,6 +58,8 @@ export default function BasicExample() {
             <Route path="/new" element={<NewT/>}>
             </Route>
             <Route path="/make" element={<MakeT/>}>
+            </Route>
+            <Route path="/pic" element={<PicT/>}>
             </Route>
           </Routes>
         </div>

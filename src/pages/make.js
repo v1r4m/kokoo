@@ -71,7 +71,7 @@ class MakeT extends Component{
             "background": "#efd",
             "draws":[]
         }
-        this.reala = [["drawImage", "https://pbs.twimg.com/media/DMsZa1oV4AAcU-G.jpg", 0, 0, this.img.width, this.img.height, 0, 0, this.img.width, this.img.height]];
+        
         var a = [this.img.width, this.img.height];
         this.b = ["fillText"];
         this.obj.size = a;
@@ -124,6 +124,7 @@ class MakeT extends Component{
          var tnum=docSnap.data().num;
          console.log(tnum);
         this.b = ["fillText"];
+        this.reala = [["drawImage", "https://pbs.twimg.com/media/DMsZa1oV4AAcU-G.jpg", 0, 0, this.img.width, this.img.height, 0, 0, this.img.width, this.img.height]];
         for(var i =0 ;i<tnum;i++){
             this.b.push(docSnap.data().answer[i].sector);
             this.b.push(docSnap.data().xy[i].x);
@@ -148,7 +149,7 @@ class MakeT extends Component{
         var canvas = this.Canvas(this.img.width, this.img.height, window.devicePixelRatio || 1);
         var ctx = canvas.getContext("2d");
         var json2d = json2d(ctx);
-        this.addjson().then(result=>json2d.render(this.obj));
+//        this.addjson().then(result=>json2d.render(this.obj));
         json2d.render(this.obj);
        document.body.appendChild(canvas);
     }
